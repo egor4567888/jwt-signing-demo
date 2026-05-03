@@ -59,3 +59,11 @@ openssl rsa -in private.pem -pubout -out public.pem
 ```
 
 Клиент собирает JWS → оборачивает в JWE → отправляет на сервер.
+
+
+## Ключевые технические решения
+
+- **Многослойная защита токена** (вложенный JWE+JWS) — авторизация и приватность одновременно
+- Работа с **PKCS12 keystore** и PEM-ключами одновременно
+- Принудительный HTTPS через `requiresChannel().requiresSecure()`
+- Структура Spring Security `SecurityFilterChain` без deprecated-API
